@@ -1,0 +1,6 @@
+# Dependencies for utility scripts in scripts/
+# Install via: install.bat  (or pip install -r requirements.txt)
+
+Pillow>=10.0.0       # Image file validation in auto_caption.py
+requests>=2.31.0     # ComfyUI API calls in batch_generate.py
+tqdm>=4.66.0         # Progress bars

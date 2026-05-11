@@ -1,0 +1,68 @@
+# ============================================================
+#  Kohya_ss LoRA Training Configuration — Helios OrthoJoint
+#  Project:  Healthcare-GenAI-Helios
+#  Hardware: NVIDIA RTX 5060 (8GB VRAM)
+#  Usage:
+#    cd C:\kohya_ss
+#    C:\kohya_ss\venv\Scripts\python.exe -m accelerate.commands.launch ^
+#        --num_cpu_threads_per_process 2 sd-scripts\train_network.py ^
+#        --config_file "C:\Users\Devansh Tyagi\Desktop\Projects\Healthcare-GenAI-Helios\training\config_lora.toml"
+# ============================================================
+
+# ── Model ──────────────────────────────────────────────────
+pretrained_model_name_or_path = "C:/Users/Devansh Tyagi/Documents/ComfyUI/models/checkpoints/v1-5-pruned-emaonly-fp16.safetensors"
+v2                             = false
+v_parameterization             = false
+
+# ── Dataset ────────────────────────────────────────────────
+train_data_dir   = "C:/Users/Devansh Tyagi/Desktop/Projects/Healthcare-GenAI-Helios/dataset"
+resolution       = "768,768"
+enable_bucket    = true
+min_bucket_reso  = 256
+max_bucket_reso  = 1024
+bucket_reso_steps = 64
+
+# ── Output ─────────────────────────────────────────────────
+output_dir    = "C:/Users/Devansh Tyagi/Desktop/Projects/Healthcare-GenAI-Helios/models"
+output_name   = "Helios_OrthoJoint_v1"
+save_model_as = "safetensors"
+save_precision = "bf16"
+save_every_n_epochs = 1
+
+# ── Logging ────────────────────────────────────────────────
+logging_dir = "C:/Users/Devansh Tyagi/Desktop/Projects/Healthcare-GenAI-Helios/logs"
+log_prefix  = "Helios_OrthoJoint"
+
+# ── Training Hyperparameters ───────────────────────────────
+max_train_epochs             = 6
+train_batch_size             = 2
+seed                         = 42
+mixed_precision              = "bf16"
+gradient_checkpointing       = false
+gradient_accumulation_steps  = 1
+max_token_length             = 225
+max_data_loader_n_workers    = 2
+noise_offset                 = 0.0
+max_grad_norm                = 1.0
+
+# ── Optimiser ──────────────────────────────────────────────
+optimizer_type    = "AdamW8bit"
+learning_rate     = 1e-4
+unet_lr           = 1e-4
+text_encoder_lr   = 5e-5
+lr_scheduler      = "cosine_with_restarts"
+lr_warmup_steps   = 0
+
+# ── Network (LoRA) ─────────────────────────────────────────
+# network_dim=32  →  enough memory for two distinct visual identities
+# network_alpha=16  →  always half of dim for training stability
+network_module = "networks.lora"
+network_dim    = 32
+network_alpha  = 16
+
+# ── Epoch Sampling ─────────────────────────────────────────
+# Generates test images at the end of each epoch so you can
+# visually pick the best checkpoint before the final epoch.
+sample_every_n_epochs = 1
+sample_prompts        = "C:/Users/Devansh Tyagi/Desktop/Projects/Healthcare-GenAI-Helios/training/sample_prompts.txt"
+sample_sampler        = "dpmpp_2m"

@@ -1,0 +1,38 @@
+# ── Model files (large binary — never push to GitHub) ──────────────────────
+models/*.safetensors
+models/*.ckpt
+models/*.pt
+models/*.bin
+
+# ── Generated outputs (keep folder, ignore contents) ────────────────────────
+outputs/*
+!outputs/.gitkeep
+
+# ── Personal reference document ─────────────────────────────────────────────
+PREP.txt
+
+# ── Python virtual environment ──────────────────────────────────────────────
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# ── Training logs ───────────────────────────────────────────────────────────
+logs/
+*.log
+
+# ── Environment variables ───────────────────────────────────────────────────
+.env
+.env.*
+
+# ── OS junk ─────────────────────────────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.lnk

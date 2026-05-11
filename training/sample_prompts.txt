@@ -1,0 +1,14 @@
+# Sample prompts checked at the end of each training epoch.
+# Kohya_ss generates one image per prompt per epoch checkpoint so you
+# can visually track training quality without waiting for the full run.
+# Lines starting with # are ignored.
+
+# ── Surgeon ────────────────────────────────────────────────────────────────
+HeliosSurgeon, professional surgeon portrait, blue surgical scrubs, warm studio lighting, bokeh background, 8k, photorealistic
+HeliosSurgeon, doctor smiling at camera, clinic hallway background, sharp focus, cinematic lighting, 8k
+HeliosSurgeon, close up face portrait, confident expression, white lab coat, soft ambient light, ultra detailed
+
+# ── Clinic ─────────────────────────────────────────────────────────────────
+HeliosClinic, modern orthopaedic clinic interior, reception desk, warm lighting, clean white walls, architectural photography, 8k
+HeliosClinic, luxury hospital waiting area, comfortable seating, natural light through large windows, photorealistic
+HeliosClinic, consultation room interior, medical equipment, calm atmosphere, professional, sharp detail, 8k
