@@ -4,7 +4,7 @@
 
 **A custom AI production pipeline for brand-consistent, photorealistic medical marketing.**
 
-[![CI](https://github.com/YOUR_GITHUB_USERNAME/Healthcare-GenAI-Helios/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/Healthcare-GenAI-Helios/actions/workflows/ci.yml)
+[![CI](https://github.com/Ares19v/Healthcare-GenAI-Helios/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/Healthcare-GenAI-Helios/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-Generation_Engine-purple)](https://github.com/comfyanonymous/ComfyUI)
