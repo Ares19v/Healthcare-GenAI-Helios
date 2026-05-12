@@ -27,11 +27,12 @@
 6. [Training Configuration](#6-training-configuration)
 7. [Quick Start](#7-quick-start)
 8. [Image Generation](#8-image-generation)
-9. [Automation Scripts](#9-automation-scripts)
-10. [Project Structure](#10-project-structure)
-11. [Retraining](#11-retraining)
-12. [Roadmap](#12-roadmap)
-13. [Acknowledgements](#13-acknowledgements)
+9. [Prompt Library](#9-prompt-library)
+10. [Automation Scripts](#10-automation-scripts)
+11. [Project Structure](#11-project-structure)
+12. [Retraining](#12-retraining)
+13. [Roadmap](#13-roadmap)
+14. [Acknowledgements](#14-acknowledgements)
 
 ---
 
@@ -63,10 +64,11 @@ Generation Phase (on demand, seconds per image)
 **Key capabilities:**
 - ✅ Consistent doctor portraits — any angle, expression, or lighting scenario
 - ✅ Consistent clinic interiors — reception, operating theatre, corridors, consultation rooms
-- ✅ Combined scenes — the same doctor placed inside the same clinic
-- ✅ Batch generation via Python API — unattended overnight runs
+- ✅ Combined scenes — the same doctor placed inside the same clinic (both triggers simultaneously)
+- ✅ Batch generation via Python API — structured prompt library with 16 curated presets
 - ✅ Fully automated dataset captioning — one `Auto_Tag_WD14.bat` tags everything
 - ✅ One-click setup — `install.bat` configures the full environment from scratch
+- ✅ Pause/resume training — `save_state = true` allows stopping and continuing mid-run
 
 ---
 
@@ -290,15 +292,55 @@ HeliosSurgeon, HeliosClinic, doctor standing in reception area, professional, ci
 ### Batch (Python Script)
 
 ```bash
-# Generate images using ComfyUI REST API
-python scripts/batch_generate.py
-```
+# All surgeon presets from the prompt library
+python scripts/batch_generate.py --mode surgeon
 
-The script talks to ComfyUI's REST API, injects prompts into the workflow, polls for completion, and downloads all outputs to the `outputs/` directory.
+# All clinic presets from the prompt library
+python scripts/batch_generate.py --mode clinic
+
+# All presets (surgeon + clinic), 3 variations each, fixed seed
+python scripts/batch_generate.py --mode all --count 3 --seed 42
+
+# One specific preset by ID
+python scripts/batch_generate.py --mode surgeon --id SURG_003
+
+# Use a plain text prompts file with a specific workflow
+python scripts/batch_generate.py \
+    --prompts training/sample_prompts.txt \
+    --workflow workflows/Helios_Clinic_v1.json
+```
 
 ---
 
-## 9. Automation Scripts
+## 9. Prompt Library
+
+All prompts live in `prompts/` and are consumed by `batch_generate.py`. Each entry has a unique `id`, `label`, `positive`, `negative`, `cfg`, `steps`, `sampler`, and `scheduler` — all injected directly into the ComfyUI workflow automatically.
+
+| File | Presets | Coverage |
+|---|---|---|
+| `surgeon_prompts.json` | 8 | White coat, surgical scrubs, consultation desk, billboard portrait, golden hour, team photo |
+| `clinic_prompts.json` | 8 | Reception, consultation room, waiting area, OR, corridor, exterior day/night, combined scene |
+
+**Add your own preset** by adding an entry to the relevant JSON:
+
+```json
+{
+  "id": "SURG_009",
+  "label": "My Custom Shot",
+  "positive": "HeliosSurgeon, doctor outdoors, city skyline background, golden hour, cinematic",
+  "negative": "blurry, watermark, deformed",
+  "cfg": 7.0,
+  "steps": 30,
+  "sampler": "dpmpp_2m",
+  "scheduler": "karras"
+}
+```
+
+The batch script picks it up automatically — no code changes needed.
+
+---
+
+## 10. Automation Scripts
 
 ### `Auto_Tag_WD14.bat` — Dataset Captioning Pipeline
 
@@ -310,26 +352,34 @@ The primary automation tool. Chains two processes together:
 
 ### `scripts/batch_generate.py` — Image Batch Generation
 
+Full-featured batch generator with structured prompt library support:
+
 ```
-ComfyUI API: POST /prompt → poll /history/{id} → GET /view?filename=... → outputs/
+--mode surgeon|clinic|all  → uses prompts/*.json library
+--id SURG_003              → run one specific preset
+--count 3                  → generate each prompt 3 times
+--seed 42                  → fixed seed for reproducibility
+--prompts file.txt         → use plain text prompts instead
 ```
 
-Supports configurable prompts, seeds, and output directories. Includes timeout handling to prevent infinite hangs if ComfyUI becomes unresponsive.
+Injects positive prompt, negative prompt, cfg, steps, sampler, and seed directly into the ComfyUI workflow graph before queuing. Includes timeout handling and graceful error recovery.
 
 ### `install.bat` — Environment Setup
 
 Creates a Python venv at `.venv/` and installs all dependencies from `requirements.txt`. Only needs to be run once per machine.
 
+> **Full training walkthrough:** See [`docs/TRAINING_GUIDE.md`](docs/TRAINING_GUIDE.md)
+
 ---
 
-## 10. Project Structure
+## 11. Project Structure
 
 ```
 Healthcare-GenAI-Helios/
 │
 ├── .github/
-│   └── workflows/ci.yml          → CI: Python lint, TOML validation,
-│                                      large-file guard (blocks .safetensors commits)
+│   └── workflows/ci.yml          → CI: Python lint, TOML/JSON validation,
+│                                      prompt schema check, large-file guard
 ├── .gitignore                    → Excludes models, outputs, venv, logs
 ├── LICENSE                       → MIT
 ├── README.md                     → This file
@@ -341,10 +391,17 @@ Healthcare-GenAI-Helios/
 │   ├── 20_HeliosSurgeon/         → 24 doctor portraits + .txt captions
 │   └── 20_HeliosClinic/          → 23 clinic interiors + .txt captions
 │
+├── docs/
+│   └── TRAINING_GUIDE.md         → Full training walkthrough & troubleshooting
+│
 ├── models/                       → LoRA weights — gitignored, never committed
 │   └── Helios_OrthoJoint_v1.safetensors
 │
 ├── outputs/                      → Generated images — gitignored
+│
+├── prompts/
+│   ├── surgeon_prompts.json      → 8 curated surgeon generation presets
+│   └── clinic_prompts.json       → 8 curated clinic generation presets
 │
 ├── scripts/
 │   ├── auto_caption.py           → Prepends trigger words to caption files

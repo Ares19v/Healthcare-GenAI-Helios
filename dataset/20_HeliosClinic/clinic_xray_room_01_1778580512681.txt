@@ -1,0 +1,1 @@
+HeliosClinic, indoors, no_humans, window, scenery, door, clock, cable, computer, monitor, locker, sink, ceiling_light, washing_machine, electrical_outlet

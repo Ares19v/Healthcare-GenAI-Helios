@@ -1,0 +1,1 @@
+HeliosClinic, flower, artist_name, indoors, english_text, book, no_humans, chair, table, plant, white_flower, scenery, wooden_floor, door, light, lamp, vase, still_life

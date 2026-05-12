@@ -1,0 +1,1 @@
+HeliosClinic, indoors, no_humans, chair, scenery, door, locker

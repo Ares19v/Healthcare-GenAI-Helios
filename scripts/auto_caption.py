@@ -21,6 +21,7 @@ Usage:
 """
 
 import re
+import sys
 from pathlib import Path
 
 from PIL import Image  # used below: Image.open() validates each file is a real image
@@ -83,6 +84,9 @@ def process_folder(folder: Path, trigger: str) -> dict:
 
 
 def main():
+    # Force UTF-8 output on Windows consoles
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     if not DATASET_DIR.exists():
         print(f"[ERROR] Dataset directory not found: {DATASET_DIR}")
         return
@@ -94,7 +98,7 @@ def main():
             continue
 
         trigger = extract_trigger_word(folder.name)
-        print(f"\n[Folder] {folder.name}  →  trigger: '{trigger}'")
+        print(f"\n[Folder] {folder.name}  ->  trigger: '{trigger}'")
         stats = process_folder(folder, trigger)
 
         for key in total:

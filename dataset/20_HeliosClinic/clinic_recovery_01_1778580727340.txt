@@ -1,0 +1,1 @@
+HeliosClinic, indoors, pillow, no_humans, window, bed, chair, curtains, scenery, door, lamp, bedroom, intravenous_drip, hospital_bed, electrical_outlet

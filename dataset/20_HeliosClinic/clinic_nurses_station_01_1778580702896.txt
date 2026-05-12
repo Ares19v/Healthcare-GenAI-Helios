@@ -1,0 +1,1 @@
+HeliosClinic, indoors, no_humans, window, chair, table, box, scenery, desk, door, computer, television, monitor, shelf, keyboard_(computer), trash_can, mouse_(computer), ceiling_light, office

@@ -1,0 +1,1 @@
+HeliosClinic, indoors, tree, no_humans, window, chair, building, scenery, bicycle

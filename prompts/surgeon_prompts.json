@@ -1,0 +1,82 @@
+[
+  {
+    "id": "SURG_001",
+    "label": "Hero Portrait — White Coat",
+    "positive": "HeliosSurgeon, professional doctor portrait, white lab coat, stethoscope, warm studio lighting, bokeh background, sharp focus, photorealistic, 8k",
+    "negative": "blurry, low quality, deformed, watermark, extra limbs, cartoon, painting",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "SURG_002",
+    "label": "Smiling — Clinic Hallway",
+    "positive": "HeliosSurgeon, doctor smiling warmly at camera, clinic hallway background, soft natural light, cinematic, photorealistic, 8k",
+    "negative": "blurry, deformed, watermark, sunglasses, hat, extra fingers",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "SURG_003",
+    "label": "Close-Up — Confident Expression",
+    "positive": "HeliosSurgeon, close up face portrait, confident expression, neutral background, ultra detailed skin, professional headshot, photorealistic",
+    "negative": "blurry, low quality, deformed face, extra features, watermark",
+    "cfg": 7.5,
+    "steps": 35,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "SURG_004",
+    "label": "Surgical Scrubs — Operating Room",
+    "positive": "HeliosSurgeon, surgeon in blue surgical scrubs, operating room background, surgical mask lowered, professional, dramatic lighting, photorealistic",
+    "negative": "blurry, deformed, watermark, low quality, cartoon",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "SURG_005",
+    "label": "Consultation — Desk Scene",
+    "positive": "HeliosSurgeon, doctor at desk reviewing patient file, consultation room, professional, reading glasses, warm office lighting, photorealistic",
+    "negative": "blurry, deformed, extra limbs, watermark, cartoon",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "SURG_006",
+    "label": "Billboard — Dark Background",
+    "positive": "HeliosSurgeon, doctor portrait, dark studio background, dramatic rim lighting, advertising photography, ultra sharp, commercial quality, 8k",
+    "negative": "blurry, deformed, watermark, casual clothing, low quality",
+    "cfg": 8.0,
+    "steps": 35,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "SURG_007",
+    "label": "Outdoor — Golden Hour",
+    "positive": "HeliosSurgeon, doctor portrait outdoors, golden hour sunlight, medical building in background, professional, photorealistic, cinematic",
+    "negative": "blurry, deformed, watermark, extra limbs, low quality",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "SURG_008",
+    "label": "Team Photo — Multiple Doctors",
+    "positive": "HeliosSurgeon, lead surgeon standing with medical team, hospital corridor, professional group photo, diverse team, photorealistic",
+    "negative": "blurry, deformed faces, watermark, low quality, cartoon",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  }
+]

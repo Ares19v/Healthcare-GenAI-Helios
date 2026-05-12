@@ -1,0 +1,1 @@
+HeliosClinic, indoors, no_humans, chair, table, box, scenery, tiles, cable, computer, monitor, shelf, sink

@@ -1,0 +1,1 @@
+HeliosClinic, indoors, english_text, tree, pillow, book, no_humans, window, table, plant, curtains, scenery, couch, wooden_floor, paper, potted_plant, flower_pot

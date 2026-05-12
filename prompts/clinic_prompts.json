@@ -1,0 +1,82 @@
+[
+  {
+    "id": "CLIN_001",
+    "label": "Reception — Wide Shot",
+    "positive": "HeliosClinic, modern medical clinic reception area, wide angle shot, warm ambient lighting, clean white walls, reception desk, comfortable seating, architectural photography, 8k",
+    "negative": "people, humans, blurry, low quality, cluttered, watermark",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "CLIN_002",
+    "label": "Consultation Room",
+    "positive": "HeliosClinic, medical consultation room interior, examination table, modern medical equipment, neutral walls, soft lighting, clean, professional, photorealistic, 8k",
+    "negative": "people, blurry, clutter, watermark, low quality",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "CLIN_003",
+    "label": "Waiting Area — Natural Light",
+    "positive": "HeliosClinic, patient waiting area, large windows with natural light, modern chairs, indoor plants, calm atmosphere, architectural photography, photorealistic",
+    "negative": "people, blurry, low quality, watermark, cartoon",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "CLIN_004",
+    "label": "Operating Theatre",
+    "positive": "HeliosClinic, sterile operating theatre, surgical lights overhead, stainless steel equipment, pristine white, dramatic overhead lighting, medical photography, photorealistic, 8k",
+    "negative": "people, blurry, low quality, watermark, dirty",
+    "cfg": 7.5,
+    "steps": 35,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "CLIN_005",
+    "label": "Corridor — Symmetrical",
+    "positive": "HeliosClinic, clean hospital corridor, symmetrical perspective, polished floors with reflection, ambient ceiling lights, leading lines, architectural photography, 8k",
+    "negative": "people, blurry, cluttered, watermark, low quality",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "CLIN_006",
+    "label": "Exterior — Day",
+    "positive": "HeliosClinic, modern medical clinic building exterior, glass facade, midday sunlight, clean signage, blue sky, architectural photography, professional, 8k",
+    "negative": "people, cars in foreground, blurry, low quality, watermark",
+    "cfg": 7.0,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "CLIN_007",
+    "label": "Exterior — Night",
+    "positive": "HeliosClinic, medical clinic exterior at night, illuminated windows, warm interior glow against dark sky, luxury building, cinematic lighting, photorealistic",
+    "negative": "people, blurry, low quality, watermark",
+    "cfg": 7.5,
+    "steps": 30,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  {
+    "id": "CLIN_008",
+    "label": "Combined — Doctor in Clinic",
+    "positive": "HeliosSurgeon, HeliosClinic, doctor standing in clinic reception area, white coat, welcoming smile, professional, cinematic lighting, photorealistic, 8k",
+    "negative": "blurry, deformed, watermark, low quality, extra limbs",
+    "cfg": 7.5,
+    "steps": 35,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+  }
+]

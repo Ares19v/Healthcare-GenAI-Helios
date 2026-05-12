@@ -14,10 +14,11 @@ echo.
 set "PROJECT_DIR=%~dp0"
 set "KOHYA_DIR=C:\kohya_ss"
 set "KOHYA_PYTHON=%KOHYA_DIR%\venv\Scripts\python.exe"
-set "TAGGER_SCRIPT=%KOHYA_DIR%\finetune\tag_images_by_wd14_tagger.py"
+set "TAGGER_SCRIPT=%KOHYA_DIR%\sd-scripts\finetune\tag_images_by_wd14_tagger.py"
+set "PYTHONPATH=%KOHYA_DIR%\sd-scripts"
 
-:: WD14 model — convnext v2 is the best balance of speed and accuracy
-set "MODEL_REPO=SmilingWolf/wd-v1-4-convnext-tagger-v2"
+:: WD14 model — SwinV2 ships with ONNX weights (required for --onnx mode)
+set "MODEL_REPO=SmilingWolf/wd-v1-4-swinv2-tagger-v2"
 set "MODEL_CACHE=%KOHYA_DIR%\wd14_tagger_model"
 
 :: Confidence threshold — 0.35 is the industry standard
@@ -84,11 +85,13 @@ if "%SURGEON_HAS_IMAGES%"=="1" (
     "%KOHYA_PYTHON%" "%TAGGER_SCRIPT%" ^
         --repo_id "%MODEL_REPO%" ^
         --model_dir "%MODEL_CACHE%" ^
-        --train_data_dir "%SURGEON_DIR%" ^
         --caption_extension ".txt" ^
         --thresh %THRESHOLD% ^
         --batch_size 4 ^
-        --caption_separator ", "
+        --caption_separator ", " ^
+        --append_tags ^
+        --onnx ^
+        "%SURGEON_DIR%"
 
     if errorlevel 1 (
         echo.
@@ -115,11 +118,13 @@ if "%CLINIC_HAS_IMAGES%"=="1" (
     "%KOHYA_PYTHON%" "%TAGGER_SCRIPT%" ^
         --repo_id "%MODEL_REPO%" ^
         --model_dir "%MODEL_CACHE%" ^
-        --train_data_dir "%CLINIC_DIR%" ^
         --caption_extension ".txt" ^
         --thresh %THRESHOLD% ^
         --batch_size 4 ^
-        --caption_separator ", "
+        --caption_separator ", " ^
+        --append_tags ^
+        --onnx ^
+        "%CLINIC_DIR%"
 
     if errorlevel 1 (
         echo.

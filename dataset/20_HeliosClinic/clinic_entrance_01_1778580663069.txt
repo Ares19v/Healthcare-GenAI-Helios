@@ -1,0 +1,1 @@
+HeliosClinic, day, indoors, english_text, tree, no_humans, window, shadow, chair, table, plant, building, scenery, reflection, door, cafe

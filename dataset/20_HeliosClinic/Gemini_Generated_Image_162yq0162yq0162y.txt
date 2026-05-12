@@ -1,0 +1,1 @@
+HeliosClinic, food, sky, day, indoors, tree, cup, no_humans, window, fruit, chair, table, plant, scenery, couch, plate, wooden_floor, door, potted_plant, lamp, shelf, kitchen, flower_pot, sink, calendar_(object)

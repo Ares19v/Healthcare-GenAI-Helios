@@ -1,0 +1,1 @@
+HeliosClinic, indoors, english_text, no_humans, scenery, door, tiles, tile_floor, locker, hallway, ceiling_light

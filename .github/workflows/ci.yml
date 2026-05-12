@@ -57,13 +57,27 @@ jobs:
           python - <<'EOF'
           import json, sys, pathlib
           errors = []
+          # Validate workflows
           for p in sorted(pathlib.Path("workflows").glob("*.json")):
               try:
                   with open(p) as f:
                       json.load(f)
-                  print(f"[OK]   {p.name}")
+                  print(f"[OK]   workflows/{p.name}")
               except Exception as e:
-                  print(f"[FAIL] {p.name}: {e}")
+                  print(f"[FAIL] workflows/{p.name}: {e}")
+                  errors.append(p.name)
+          # Validate prompt libraries
+          for p in sorted(pathlib.Path("prompts").glob("*.json")):
+              try:
+                  with open(p) as f:
+                      data = json.load(f)
+                  assert isinstance(data, list), "must be a JSON array"
+                  for entry in data:
+                      assert "id" in entry, f"entry missing 'id': {entry}"
+                      assert "positive" in entry, f"entry missing 'positive': {entry}"
+                  print(f"[OK]   prompts/{p.name} ({len(data)} prompts)")
+              except Exception as e:
+                  print(f"[FAIL] prompts/{p.name}: {e}")
                   errors.append(p.name)
           if errors:
               sys.exit(1)
@@ -99,12 +113,17 @@ jobs:
               "models",
               "workflows",
               "outputs",
+              "prompts",
+              "docs",
               "scripts/auto_caption.py",
               "scripts/batch_generate.py",
               "training/config_lora.toml",
               "training/sample_prompts.txt",
               "workflows/Helios_Surgeon_v1.json",
               "workflows/Helios_Clinic_v1.json",
+              "prompts/surgeon_prompts.json",
+              "prompts/clinic_prompts.json",
+              "docs/TRAINING_GUIDE.md",
               "requirements.txt",
               "LICENSE",
               ".gitignore",
