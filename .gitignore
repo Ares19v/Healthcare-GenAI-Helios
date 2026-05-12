@@ -4,6 +4,7 @@ models/*.ckpt
 models/*.pt
 models/*.bin
 # State folders (optimizer, scheduler, model weights saved per epoch)
+models/**/*-state/
 models/**/*.safetensors
 models/**/*.bin
 models/**/*.pt
