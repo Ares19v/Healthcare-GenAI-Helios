@@ -23,7 +23,7 @@ Usage:
 import re
 from pathlib import Path
 
-from PIL import Image  # noqa: F401 – validates that file is a real image
+from PIL import Image  # used below: Image.open() validates each file is a real image
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 DATASET_DIR = Path(__file__).resolve().parent.parent / "dataset"
@@ -40,7 +40,10 @@ def extract_trigger_word(folder_name: str) -> str:
 def process_folder(folder: Path, trigger: str) -> dict:
     stats = {"created": 0, "prepended": 0, "skipped": 0, "errors": 0}
 
-    image_files = [f for f in folder.iterdir() if f.suffix.lower() in IMAGE_EXTENSIONS]
+    image_files = [
+        f for f in folder.iterdir()
+        if f.suffix.lower() in IMAGE_EXTENSIONS and f.name != ".gitkeep"
+    ]
 
     if not image_files:
         print(f"  [WARN] No images found in {folder.name}")

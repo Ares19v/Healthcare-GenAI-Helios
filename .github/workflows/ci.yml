@@ -69,18 +69,20 @@ jobs:
               sys.exit(1)
           EOF
 
-      # ── 7. Guard: ensure no .safetensors are tracked ─────────────────────
       - name: Check no model files are tracked by Git
         run: |
           python - <<'EOF'
           import subprocess, sys
+          extensions = [".safetensors", ".ckpt", ".pt", ".bin"]
           result = subprocess.run(
-              ["git", "ls-files", "*.safetensors", "*.ckpt", "*.pt", "*.bin"],
+              ["git", "ls-files"],
               capture_output=True, text=True
           )
-          tracked = result.stdout.strip()
-          if tracked:
-              print(f"[FAIL] Large model files are tracked by Git:\n{tracked}")
+          all_tracked = result.stdout.strip().splitlines()
+          bad = [f for f in all_tracked if any(f.endswith(ext) for ext in extensions)]
+          if bad:
+              print(f"[FAIL] Large model files are tracked by Git:")
+              for f in bad: print(f"       {f}")
               print("       Add them to .gitignore immediately.")
               sys.exit(1)
           print("[OK] No large model files tracked by Git.")

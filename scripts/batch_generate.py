@@ -36,7 +36,8 @@ from tqdm import tqdm
 DEFAULT_WORKFLOW = Path(__file__).resolve().parent.parent / "workflows" / "Helios_Surgeon_v1.json"
 DEFAULT_PROMPTS = Path(__file__).resolve().parent.parent / "training" / "sample_prompts.txt"
 POSITIVE_NODE_TITLE = "Positive Prompt"   # Must match the node title in your workflow JSON
-POLL_INTERVAL = 3   # seconds between queue status checks
+POLL_INTERVAL = 3       # seconds between queue status checks
+MAX_WAIT_SECONDS = 300  # bail out after 5 minutes per job (prevents infinite hang)
 
 
 def load_workflow(path: Path) -> dict:
@@ -68,19 +69,23 @@ def queue_prompt(workflow: dict, host: str) -> str:
     return response.json()["prompt_id"]
 
 
-def wait_for_completion(prompt_id: str, host: str):
-    """Poll /history until the prompt has finished executing."""
-    while True:
+def wait_for_completion(prompt_id: str, host: str) -> bool:
+    """Poll /history until the prompt finishes. Returns False if timeout is hit."""
+    elapsed = 0
+    while elapsed < MAX_WAIT_SECONDS:
         try:
             resp = requests.get(f"http://{host}/history/{prompt_id}", timeout=5)
             history = resp.json()
             if prompt_id in history:
                 outputs = history[prompt_id].get("outputs", {})
                 if outputs:
-                    return
+                    return True
         except requests.RequestException:
             pass
         time.sleep(POLL_INTERVAL)
+        elapsed += POLL_INTERVAL
+    print(f"\n[WARN] Job {prompt_id} timed out after {MAX_WAIT_SECONDS}s — skipping.")
+    return False
 
 
 def main():
