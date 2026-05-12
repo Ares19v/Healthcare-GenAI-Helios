@@ -80,7 +80,7 @@ Generation Phase (on demand, seconds per image)
 │       │                                                             │
 │       ▼                                                             │
 │  Auto_Tag_WD14.bat                                                  │
-│  ├── WD14 SwinV2 ONNX tagger  → content tags per image             │
+│  ├── WD14 SwinV2 ONNX tagger  → content tags per image              │
 │  └── auto_caption.py          → prepends HeliosSurgeon/HeliosClinic │
 │                                                                     │
 │  dataset/20_HeliosSurgeon/  (24 portraits, trigger: HeliosSurgeon)  │
@@ -88,27 +88,27 @@ Generation Phase (on demand, seconds per image)
 │       │                                                             │
 │       ▼                                                             │
 │  Kohya_ss LoRA Training                                             │
-│  ├── Base: SD 1.5 (v1-5-pruned-emaonly-fp16)                       │
-│  ├── Optimizer: AdamW8bit | Precision: bf16 | Res: 512px           │
-│  ├── Network: dim=32, alpha=16 | Steps: 2,820 | Epochs: 6         │
-│  └── xformers memory-efficient attention enabled                   │
+│  ├── Base: SD 1.5 (v1-5-pruned-emaonly-fp16)                        │
+│  ├── Optimizer: AdamW8bit | Precision: bf16 | Res: 512px            │
+│  ├── Network: dim=32, alpha=16 | Steps: 2,820 | Epochs: 6           │
+│  └── xformers memory-efficient attention enabled                    │
 │       │                                                             │
 │       ▼                                                             │
-│  Helios_OrthoJoint_v1.safetensors  (~36 MB)                        │
+│  Helios_OrthoJoint_v1.safetensors  (~36 MB)                         │
 └───────────────────────┬─────────────────────────────────────────────┘
                         │
 ┌───────────────────────▼─────────────────────────────────────────────┐
 │                     GENERATION PHASE                                │
 │                                                                     │
 │  ComfyUI Studio                                                     │
-│  ├── SD 1.5 base checkpoint (frozen, never modified)               │
-│  ├── LoRA plugin: Helios_OrthoJoint_v1.safetensors                 │
-│  ├── KSampler: 30 steps · CFG 7 · dpmpp_2m · karras               │
+│  ├── SD 1.5 base checkpoint (frozen, never modified)                │
+│  ├── LoRA plugin: Helios_OrthoJoint_v1.safetensors                  │
+│  ├── KSampler: 30 steps · CFG 7 · dpmpp_2m · karras                 │
 │  │                                                                  │
-│  ├── Helios_Surgeon_v1.json  →  doctor portrait workflow           │
-│  └── Helios_Clinic_v1.json   →  clinic interior workflow           │
+│  ├── Helios_Surgeon_v1.json  →  doctor portrait workflow            │
+│  └── Helios_Clinic_v1.json   →  clinic interior workflow            │
 │                                                                     │
-│  batch_generate.py  →  ComfyUI REST API  →  outputs/ folder        │
+│  batch_generate.py  →  ComfyUI REST API  →  outputs/ folder         │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
