@@ -65,7 +65,8 @@ Generation Phase (on demand, seconds per image)
 - ✅ Consistent doctor portraits — any angle, expression, or lighting scenario
 - ✅ Consistent clinic interiors — reception, operating theatre, corridors, consultation rooms
 - ✅ Combined scenes — the same doctor placed inside the same clinic (both triggers simultaneously)
-- ✅ Batch generation via Python API — structured prompt library with 16 curated presets
+- ✅ **Video Generation** — AnimateDiff integration for dynamic short-form marketing clips
+- ✅ Batch generation via Python API — structured prompt library with 19 curated presets
 - ✅ Fully automated dataset captioning — one `Auto_Tag_WD14.bat` tags everything
 - ✅ One-click setup — `install.bat` configures the full environment from scratch
 - ✅ Pause/resume training — `save_state = true` allows stopping and continuing mid-run
@@ -105,10 +106,12 @@ Generation Phase (on demand, seconds per image)
 │  ComfyUI Studio                                                     │
 │  ├── SD 1.5 base checkpoint (frozen, never modified)                │
 │  ├── LoRA plugin: Helios_OrthoJoint_v1.safetensors                  │
+│  ├── AnimateDiff (Optional): mm_sd_v15_v2.ckpt                      │
 │  ├── KSampler: 30 steps · CFG 7 · dpmpp_2m · karras                 │
 │  │                                                                  │
 │  ├── Helios_Surgeon_v1.json  →  doctor portrait workflow            │
-│  └── Helios_Clinic_v1.json   →  clinic interior workflow            │
+│  ├── Helios_Clinic_v1.json   →  clinic interior workflow            │
+│  └── Helios_AnimateDiff_Txt2Vid_v1.json → video workflow            │
 │                                                                     │
 │  batch_generate.py  →  ComfyUI REST API  →  outputs/ folder         │
 └─────────────────────────────────────────────────────────────────────┘
@@ -273,7 +276,7 @@ Replace `000003` with the epoch number of the last saved state folder in `models
 
 ---
 
-## 8. Image Generation
+## 8. Asset Generation
 
 ### Manual (ComfyUI)
 
@@ -283,6 +286,7 @@ Copy `Helios_OrthoJoint_v1.safetensors` into ComfyUI's `models/loras/` folder, t
 |---|---|
 | `Helios_Surgeon_v1.json` | Generate doctor portraits |
 | `Helios_Clinic_v1.json` | Generate clinic interiors |
+| `Helios_AnimateDiff_Txt2Vid_v1.json` | Generate animated marketing videos |
 
 To generate the **doctor inside the clinic**, use either workflow and combine both trigger words in the positive prompt:
 ```
@@ -298,7 +302,10 @@ python scripts/batch_generate.py --mode surgeon
 # All clinic presets from the prompt library
 python scripts/batch_generate.py --mode clinic
 
-# All presets (surgeon + clinic), 3 variations each, fixed seed
+# All animated video presets
+python scripts/batch_generate.py --mode video
+
+# All presets (surgeon + clinic + video), 3 variations each, fixed seed
 python scripts/batch_generate.py --mode all --count 3 --seed 42
 
 # One specific preset by ID
@@ -320,6 +327,7 @@ All prompts live in `prompts/` and are consumed by `batch_generate.py`. Each ent
 |---|---|---|
 | `surgeon_prompts.json` | 8 | White coat, surgical scrubs, consultation desk, billboard portrait, golden hour, team photo |
 | `clinic_prompts.json` | 8 | Reception, consultation room, waiting area, OR, corridor, exterior day/night, combined scene |
+| `animatediff_prompts.json` | 3 | Dynamic animated shots (greeting, panning, exam) specifically tuned for AnimateDiff |
 
 **Add your own preset** by adding an entry to the relevant JSON:
 
@@ -413,7 +421,8 @@ Healthcare-GenAI-Helios/
 │
 └── workflows/
     ├── Helios_Surgeon_v1.json    → ComfyUI workflow: doctor portrait
-    └── Helios_Clinic_v1.json     → ComfyUI workflow: clinic interior
+    ├── Helios_Clinic_v1.json     → ComfyUI workflow: clinic interior
+    └── Helios_AnimateDiff_Txt2Vid_v1.json → ComfyUI workflow: video animation
 ```
 
 ---
@@ -443,8 +452,8 @@ Six checkpoint files are saved automatically (`Helios_OrthoJoint_v1-000001.safet
 
 ## 12. Roadmap
 
-- [ ] **Prompt library** — structured JSON presets for common healthcare scenarios (consultation, surgery, branding shots)
-- [ ] **Video generation** — AnimateDiff integration for short animated clinic walkthroughs
+- [x] **Prompt library** — structured JSON presets for common healthcare scenarios (consultation, surgery, branding shots)
+- [x] **Video generation** — AnimateDiff integration for short animated clinic walkthroughs
 - [ ] **ControlNet pose** — use OpenPose to precisely control the doctor's body position
 - [ ] **Upscaling node** — chain Real-ESRGAN 4× into workflows for print-ready output
 - [ ] **Extended dataset** — 50+ images covering diverse lighting, clothing, and clinic rooms

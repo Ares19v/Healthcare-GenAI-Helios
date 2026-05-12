@@ -1,0 +1,38 @@
+[
+  {
+    "id": "VID_001",
+    "label": "surgeon_greeting",
+    "positive": "HeliosSurgeon, professional orthopaedic surgeon looking directly at camera, gentle smile, blinking eyes, subtle head movement, blue surgical scrubs, warm studio lighting, bokeh, 8k, photorealistic, cinematic motion, dynamic movement",
+    "negative": "blurry, low quality, distorted, cartoon, watermark, fast motion, flickering, deformed, erratic movement, bad anatomy",
+    "cfg": 7.0,
+    "steps": 20,
+    "sampler": "euler",
+    "scheduler": "normal",
+    "width": 512,
+    "height": 768
+  },
+  {
+    "id": "VID_002",
+    "label": "clinic_pan",
+    "positive": "HeliosClinic, modern orthopaedic clinic interior, slow camera pan, reception desk, warm ambient lighting, clean white walls, architectural photography, 8k, photorealistic, smooth tracking shot",
+    "negative": "blurry, low quality, distorted, cartoon, watermark, text, fast motion, flickering, noise, people, persons",
+    "cfg": 6.5,
+    "steps": 25,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras",
+    "width": 768,
+    "height": 512
+  },
+  {
+    "id": "VID_003",
+    "label": "surgeon_exam",
+    "positive": "HeliosSurgeon, professional surgeon holding a medical tablet, looking down and then up, operating room background, subtle breathing, highly detailed, 8k, photorealistic, cinematic motion",
+    "negative": "blurry, low quality, distorted, cartoon, watermark, fast motion, flickering, deformed hands, extra fingers",
+    "cfg": 7.5,
+    "steps": 25,
+    "sampler": "euler",
+    "scheduler": "normal",
+    "width": 512,
+    "height": 768
+  }
+]

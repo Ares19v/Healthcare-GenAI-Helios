@@ -45,8 +45,10 @@ PROMPTS_DIR = ROOT / "prompts"
 WORKFLOWS_DIR = ROOT / "workflows"
 SURGEON_PROMPTS = PROMPTS_DIR / "surgeon_prompts.json"
 CLINIC_PROMPTS = PROMPTS_DIR / "clinic_prompts.json"
+VIDEO_PROMPTS = PROMPTS_DIR / "animatediff_prompts.json"
 SURGEON_WORKFLOW = WORKFLOWS_DIR / "Helios_Surgeon_v1.json"
 CLINIC_WORKFLOW = WORKFLOWS_DIR / "Helios_Clinic_v1.json"
+VIDEO_WORKFLOW = WORKFLOWS_DIR / "Helios_AnimateDiff_Txt2Vid_v1.json"
 
 POSITIVE_NODE_TITLE = "Positive Prompt"  # Must match node title in workflow JSON
 NEGATIVE_NODE_TITLE = "Negative Prompt"  # Must match node title in workflow JSON
@@ -150,8 +152,8 @@ def main():
     parser = argparse.ArgumentParser(description="Batch generate images via ComfyUI REST API")
     mode_group = parser.add_mutually_exclusive_group()
     mode_group.add_argument(
-        "--mode", choices=["surgeon", "clinic", "all"],
-        help="Use the structured JSON prompt library (surgeon / clinic / all)"
+        "--mode", choices=["surgeon", "clinic", "video", "all"],
+        help="Use the structured JSON prompt library (surgeon / clinic / video / all)"
     )
     parser.add_argument("--workflow", type=Path, help="Override workflow JSON path")
     parser.add_argument("--prompts", type=Path, help="Plain-text prompts file (one per line)")
@@ -180,6 +182,14 @@ def main():
             clinic_prompts = load_json_prompts(CLINIC_PROMPTS)
             workflow = args.workflow or CLINIC_WORKFLOW
             jobs += [(p, workflow) for p in clinic_prompts]
+
+        if args.mode in ("video", "all"):
+            if not VIDEO_PROMPTS.exists():
+                print(f"[ERROR] Prompt library not found: {VIDEO_PROMPTS}")
+                sys.exit(1)
+            video_prompts = load_json_prompts(VIDEO_PROMPTS)
+            workflow = args.workflow or VIDEO_WORKFLOW
+            jobs += [(p, workflow) for p in video_prompts]
 
     elif args.prompts:
         if not args.prompts.exists():

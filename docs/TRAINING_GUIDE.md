@@ -135,6 +135,8 @@ Copy the best epoch file to `models/Helios_OrthoJoint_v1.safetensors` (rename it
 
 **LoRA strength:** The default strength is `1.0`. If the identity is too strong and looks artificial, lower it to `0.7–0.8`. If it is too weak and the face does not look like your doctor, raise it to `1.1–1.2`.
 
+**AnimateDiff Note:** When using the `Helios_AnimateDiff_Txt2Vid_v1.json` workflow, you may need to lower the LoRA strength to `0.7–0.85`. Motion models (like `mm_sd_v15_v2.ckpt`) alter the latent space heavily, and a LoRA at `1.0` combined with motion can sometimes cause the video to look over-baked or visually "crispy."
+
 ---
 
 ## Understanding Loss
