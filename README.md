@@ -9,7 +9,7 @@
 [![Stable Diffusion 1.5](https://img.shields.io/badge/Base_Model-SD_1.5-7C3AED)](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5)
 [![Kohya_ss](https://img.shields.io/badge/Training-Kohya__ss-F59E0B)](https://github.com/kohya-ss/sd-scripts)
 [![WD14 Tagger](https://img.shields.io/badge/Auto--Tag-WD14_SwinV2-06B6D4)](https://huggingface.co/SmilingWolf/wd-v1-4-swinv2-tagger-v2)
-[![License: MIT](https://img.shields.io/badge/License-MIT-22C55E)](LICENSE)
+
 
 *A production-grade generative AI pipeline that fine-tunes Stable Diffusion on a specific doctor and clinic identity, then automates photorealistic healthcare marketing asset generation — brand-consistent, on demand, at zero marginal cost per image.*
 
@@ -474,3 +474,8 @@ Six checkpoint files are saved automatically (`Helios_OrthoJoint_v1-000001.safet
 Built for the **Helios Healthcare** AI marketing pipeline · MIT License · 2026
 
 </div>
+
+---
+<p align="center">
+  Made by Devansh Tyagi @ 2026
+</p>
