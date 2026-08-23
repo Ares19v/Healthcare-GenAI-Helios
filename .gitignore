@@ -18,6 +18,7 @@ outputs/*
 
 # ── Personal reference document ─────────────────────────────────────────────
 PREP.txt
+FUTURE_SCOPE.md
 
 # ── Python virtual environment ──────────────────────────────────────────────
 .venv/
