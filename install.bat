@@ -54,8 +54,8 @@ echo  =====================================================
 echo   Installation complete!
 echo.
 echo   Usage examples:
-echo     .venv\Scripts\python.exe scripts\auto_caption.py
-echo     .venv\Scripts\python.exe scripts\batch_generate.py
+echo     python scripts\auto_caption.py
+echo     python scripts\batch_generate.py
 echo  =====================================================
 echo.
 pause

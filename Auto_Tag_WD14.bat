@@ -13,7 +13,7 @@ echo.
 :: ── Configuration ────────────────────────────────────────────────────────────
 set "PROJECT_DIR=%~dp0"
 set "KOHYA_DIR=C:\kohya_ss"
-set "KOHYA_PYTHON=%KOHYA_DIR%\venv\Scripts\python.exe"
+set "KOHYA_PYTHON=%KOHYA_DIR%\python"
 set "TAGGER_SCRIPT=%KOHYA_DIR%\sd-scripts\finetune\tag_images_by_wd14_tagger.py"
 set "PYTHONPATH=%KOHYA_DIR%\sd-scripts"
 
@@ -149,8 +149,8 @@ echo  [3/3] Prepending trigger words (HeliosSurgeon / HeliosClinic)...
 echo.
 
 :: Use project venv if available, else fall back to system Python
-if exist "%PROJECT_DIR%.venv\Scripts\python.exe" (
-    set "PROJ_PYTHON=%PROJECT_DIR%.venv\Scripts\python.exe"
+if exist "%PROJECT_DIR%python" (
+    set "PROJ_PYTHON=%PROJECT_DIR%python"
 ) else (
     set "PROJ_PYTHON=python"
 )
