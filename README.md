@@ -389,7 +389,6 @@ Healthcare-GenAI-Helios/
 │   └── workflows/ci.yml          → CI: Python lint, TOML/JSON validation,
 │                                      prompt schema check, large-file guard
 ├── .gitignore                    → Excludes models, outputs, venv, logs
-├── LICENSE                       → MIT
 ├── README.md                     → This file
 ├── install.bat                   → One-click Python environment setup
 ├── Auto_Tag_WD14.bat             → Full dataset captioning pipeline
@@ -469,17 +468,6 @@ Six checkpoint files are saved automatically (`Helios_OrthoJoint_v1-000001.safet
 
 ---
 
-<div align="center">
-
-Built for the **Helios Healthcare** AI marketing pipeline · MIT License · 2026
-
-</div>
-
----
-<p align="center">
-  Made by Devansh Tyagi @ 2026
-</p>
-
 ## 🤗 Model on Hugging Face
 
 The trained model is available on Hugging Face: [devanshty/Helios-OrthoJoint](https://huggingface.co/devanshty/Helios-OrthoJoint)
@@ -490,3 +478,9 @@ The trained model is available on Hugging Face: [devanshty/Helios-OrthoJoint](ht
 from huggingface_hub import hf_hub_download
 model_path = hf_hub_download(repo_id='devanshty/Helios-OrthoJoint', filename='Helios_OrthoJoint_v1.safetensors')
 ```
+
+---
+
+© 2025 Devansh Tyagi (Ares19v). All Rights Reserved.
+
+Unauthorized copying, modification, distribution, or use of this project or any of its components, in whole or in part, without explicit written permission from the author is strictly prohibited.
