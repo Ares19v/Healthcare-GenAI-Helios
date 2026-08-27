@@ -11,7 +11,7 @@
 [![WD14 Tagger](https://img.shields.io/badge/Auto--Tag-WD14_SwinV2-06B6D4)](https://huggingface.co/SmilingWolf/wd-v1-4-swinv2-tagger-v2)
 
 
-*A production-grade generative AI pipeline that fine-tunes Stable Diffusion on a specific doctor and clinic identity, then automates photorealistic healthcare marketing asset generation — brand-consistent, on demand, at zero marginal cost per image.*
+*A high-performance generative AI pipeline that fine-tunes Stable Diffusion on a specific doctor and clinic identity, then automates photorealistic healthcare marketing asset generation — brand-consistent, on demand, at zero marginal cost per image.*
 
 </div>
 
